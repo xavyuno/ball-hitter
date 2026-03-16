@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cho1pwqrelk2l"]
+
+[ext_resource type="PackedScene" uid="uid://cnfkhf0hjliv6" path="res://Game/Assets/Scenes/Player/player.tscn" id="1_bcjpi"]
+[ext_resource type="Script" uid="uid://bqng20khyl8ed" path="res://Game/Main/wall.gd" id="1_egtdr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egtdr"]
+size = Vector2(32, 704)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ao4g4"]
+size = Vector2(1280, 32)
+
+[node name="Main" type="Node2D"]
+
+[node name="Wall1" type="StaticBody2D" parent="."]
+position = Vector2(640, 0)
+script = ExtResource("1_egtdr")
+Div = -1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1"]
+position = Vector2(-16, 352)
+shape = SubResource("RectangleShape2D_egtdr")
+
+[node name="Polygon2D" type="Polygon2D" parent="Wall1"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, -1024, 0, -1024, 768, 0, 768)
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(640, 0)
+script = ExtResource("1_egtdr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2(17, 352)
+shape = SubResource("RectangleShape2D_egtdr")
+
+[node name="Polygon2D2" type="Polygon2D" parent="Wall2"]
+position = Vector2(1024, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, -1024, 0, -1024, 768, 0, 768)
+
+[node name="Ceilling" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceilling"]
+position = Vector2(640, -16)
+shape = SubResource("RectangleShape2D_ao4g4")
+
+[node name="Player" parent="." instance=ExtResource("1_bcjpi")]
+position = Vector2(640, 704)

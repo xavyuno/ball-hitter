@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmcnopx8sgqwl"]
+
+[ext_resource type="Script" uid="uid://b6dx1md4vga0l" path="res://Game/Assets/Scenes/Explosion/explosion.gd" id="1_1cwfc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iffqo"]
+radius = 64.0
+
+[node name="Explosion" type="Area2D"]
+script = ExtResource("1_1cwfc")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iffqo")
+
+[node name="Icon" type="Polygon2D" parent="."]
+color = Color(1, 0, 0, 0.392157)
+polygon = PackedVector2Array(0, -64, -17, -62, -32, -55, -45, -45, -55, -32, -62, -16, -63, 0, -62, 16, -56, 31, -45, 45, -32, 55, -17, 62, 0, 64, 17, 62, 32, 55, 45, 45, 55, 32, 62, 16, 64, 0, 62, -16, 55, -32, 45, -45, 32, -55, 17, -62)
+
+[node name="Refresh" type="Timer" parent="."]
+wait_time = 0.9
+autostart = true
+
+[node name="Close" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Refresh" to="." method="_on_refresh_timeout"]
+[connection signal="timeout" from="Close" to="." method="_on_close_timeout"]

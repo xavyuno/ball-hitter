@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpifb35rikk5d"]
+
+[ext_resource type="Script" uid="uid://bs1g4j2o176nr" path="res://Game/Assets/Scenes/Block/block.gd" id="1_w40k7"]
+[ext_resource type="Texture2D" uid="uid://7hece5yih1lw" path="res://Game/Assets/Icons/Blocks/Normal.png" id="2_ldyaw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avcrd"]
+size = Vector2(65.5, 64.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w40k7"]
+size = Vector2(64, 64)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ldyaw"]
+font_size = 23
+
+[node name="Block" type="Area2D" groups=["Block"]]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_w40k7")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_avcrd")
+
+[node name="Block" type="StaticBody2D" parent="." groups=["Block"]]
+
+[node name="Collision" type="CollisionShape2D" parent="Block"]
+shape = SubResource("RectangleShape2D_w40k7")
+
+[node name="Move" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Icon" type="TextureRect" parent="."]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("2_ldyaw")
+
+[node name="Info" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+text = "123K"
+label_settings = SubResource("LabelSettings_ldyaw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UnFreeze" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Move" to="." method="_on_move_timeout"]
+[connection signal="timeout" from="UnFreeze" to="." method="_on_un_freeze_timeout"]

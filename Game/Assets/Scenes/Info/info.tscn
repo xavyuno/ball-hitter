@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dovaleroqid15"]
+
+[ext_resource type="Script" uid="uid://bayi1evjt1ndj" path="res://Game/Assets/Scenes/Info/info.gd" id="1_a2e1r"]
+[ext_resource type="PackedScene" uid="uid://cmgyladxgpbt0" path="res://Game/Assets/Scenes/Despawn/despawn.tscn" id="2_tnada"]
+
+[node name="Info" type="Label"]
+offset_right = 256.0
+offset_bottom = 32.0
+vertical_alignment = 1
+script = ExtResource("1_a2e1r")
+
+[node name="Despawn" parent="." instance=ExtResource("2_tnada")]
+Random = true
+MinT = 1.0
+MaxT = 1.5

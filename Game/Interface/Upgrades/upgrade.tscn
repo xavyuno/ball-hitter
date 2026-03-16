@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://c03w5f3pvpj33"]
+
+[ext_resource type="Script" uid="uid://6bg3pqqof647" path="res://Game/Interface/Upgrades/upgrade.gd" id="1_70wcy"]
+
+[node name="Upgrade" type="Button"]
+custom_minimum_size = Vector2(176, 176)
+script = ExtResource("1_70wcy")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+text = "Balls: 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 32.0
+offset_bottom = 156.0
+grow_horizontal = 2
+text = "Increases total balls"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Amount" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 153.0
+offset_bottom = 176.0
+grow_horizontal = 2
+text = "3289434829$"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

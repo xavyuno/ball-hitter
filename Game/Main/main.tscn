@@ -1,0 +1,142 @@
+[gd_scene load_steps=8 format=3 uid="uid://cho1pwqrelk2l"]
+
+[ext_resource type="Script" uid="uid://dph4aaqpihxgl" path="res://Game/Main/main.gd" id="1_ao4g4"]
+[ext_resource type="PackedScene" uid="uid://cnfkhf0hjliv6" path="res://Game/Assets/Scenes/Player/player.tscn" id="1_bcjpi"]
+[ext_resource type="Script" uid="uid://bqng20khyl8ed" path="res://Game/Main/wall.gd" id="1_egtdr"]
+[ext_resource type="PackedScene" uid="uid://br142m4lfe1np" path="res://Game/Interface/HUD/hud.tscn" id="4_0yd3n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egtdr"]
+size = Vector2(32, 704)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ao4g4"]
+size = Vector2(1280, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0yd3n"]
+size = Vector2(1280, 32)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ao4g4")
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Wall1" type="StaticBody2D" parent="Walls"]
+position = Vector2(640, 0)
+script = ExtResource("1_egtdr")
+Div = -1
+
+[node name="Collision" type="CollisionShape2D" parent="Walls/Wall1"]
+position = Vector2(-16, 352)
+shape = SubResource("RectangleShape2D_egtdr")
+
+[node name="Icon" type="Polygon2D" parent="Walls/Wall1"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 0, -640, 0, -640, 704, 0, 704)
+
+[node name="Wall2" type="StaticBody2D" parent="Walls"]
+position = Vector2(640, 0)
+script = ExtResource("1_egtdr")
+
+[node name="Collision" type="CollisionShape2D" parent="Walls/Wall2"]
+position = Vector2(17, 352)
+shape = SubResource("RectangleShape2D_egtdr")
+
+[node name="Icon" type="Polygon2D" parent="Walls/Wall2"]
+position = Vector2(1024, 0)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-384, 0, -1024, 0, -1024, 704, -384, 704)
+
+[node name="Ceilling" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Ceilling"]
+position = Vector2(640, -16)
+shape = SubResource("RectangleShape2D_ao4g4")
+
+[node name="Player" parent="." instance=ExtResource("1_bcjpi")]
+position = Vector2(640, 688)
+
+[node name="Collect" type="Area2D" parent="."]
+position = Vector2(640, 707)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Collision" type="CollisionShape2D" parent="Collect"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_0yd3n")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Input" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUD" parent="UI" instance=ExtResource("4_0yd3n")]
+
+[node name="BlocksSpawner" type="Node2D" parent="."]
+position = Vector2(0, 32)
+
+[node name="M1" type="Marker2D" parent="BlocksSpawner"]
+position = Vector2(640, 0)
+
+[node name="M2" type="Marker2D" parent="BlocksSpawner"]
+position = Vector2(576, 0)
+
+[node name="M3" type="Marker2D" parent="BlocksSpawner"]
+position = Vector2(704, 0)
+
+[node name="M4" type="Marker2D" parent="BlocksSpawner"]
+position = Vector2(512, 0)
+
+[node name="M5" type="Marker2D" parent="BlocksSpawner"]
+position = Vector2(768, 0)
+
+[node name="M6" type="Marker2D" parent="BlocksSpawner"]
+position = Vector2(448, 0)
+
+[node name="M7" type="Marker2D" parent="BlocksSpawner"]
+position = Vector2(832, 0)
+
+[node name="M8" type="Marker2D" parent="BlocksSpawner"]
+position = Vector2(384, 0)
+
+[node name="M9" type="Marker2D" parent="BlocksSpawner"]
+position = Vector2(896, 0)
+
+[node name="M10" type="Marker2D" parent="BlocksSpawner"]
+position = Vector2(320, 0)
+
+[node name="M11" type="Marker2D" parent="BlocksSpawner"]
+position = Vector2(960, 0)
+
+[node name="M12" type="Marker2D" parent="BlocksSpawner"]
+position = Vector2(256, 0)
+
+[node name="M13" type="Marker2D" parent="BlocksSpawner"]
+position = Vector2(1024, 0)
+
+[node name="M14" type="Marker2D" parent="BlocksSpawner"]
+position = Vector2(192, 0)
+
+[node name="M15" type="Marker2D" parent="BlocksSpawner"]
+position = Vector2(1088, 0)
+
+[node name="Blocks" type="Node2D" parent="."]
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Refresher" type="Timer" parent="SpawnTimer"]
+wait_time = 2.5
+autostart = true
+
+[connection signal="body_entered" from="Collect" to="." method="_on_collect_body_entered"]
+[connection signal="focus_entered" from="UI/Input" to="." method="_on_input_focus_entered"]
+[connection signal="focus_exited" from="UI/Input" to="." method="_on_input_focus_exited"]
+[connection signal="mouse_entered" from="UI/Input" to="." method="_on_input_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Input" to="." method="_on_input_mouse_exited"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer/Refresher" to="." method="_on_refresher_timeout"]

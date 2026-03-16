@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1bb48wbtc321"]
+
+[ext_resource type="Script" uid="uid://bf7mfn1voh02m" path="res://Game/Interface/Upgrades/upgrades.gd" id="1_qw8a7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d21xs"]
+font_size = 45
+
+[node name="Upgrades" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 256.0
+offset_top = 192.0
+offset_right = -256.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qw8a7")
+
+[node name="BG" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_right = 768.0
+offset_bottom = 64.0
+text = "Upgrades"
+label_settings = SubResource("LabelSettings_d21xs")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 80.0
+offset_right = 752.0
+offset_bottom = 448.0
+
+[node name="Holder" type="HFlowContainer" parent="Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

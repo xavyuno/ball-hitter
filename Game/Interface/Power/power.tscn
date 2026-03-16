@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://cln6gmy5spgjn"]
+
+[ext_resource type="Script" uid="uid://dkf1t5mksalk5" path="res://Game/Interface/HUD/power.gd" id="1_wdbgv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tafn"]
+bg_color = Color(0, 0, 0, 0.588235)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0tafn"]
+font_size = 46
+
+[node name="Power" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 256.0
+offset_top = 160.0
+offset_right = 1024.0
+offset_bottom = 672.0
+script = ExtResource("1_wdbgv")
+
+[node name="BG" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="None" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+offset_top = 448.0
+offset_right = 768.0
+offset_bottom = 512.0
+text = "Recieve x cash"
+
+[node name="Scroll" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 768.0
+offset_bottom = 448.0
+
+[node name="Holder" type="VBoxContainer" parent="Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_right = 768.0
+offset_bottom = 64.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_0tafn")
+text = "Powers"
+label_settings = SubResource("LabelSettings_0tafn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="None" to="." method="_on_none_pressed"]

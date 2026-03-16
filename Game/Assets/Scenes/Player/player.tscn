@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnfkhf0hjliv6"]
+
+[ext_resource type="Script" uid="uid://dq820cxldebkk" path="res://Game/Assets/Scenes/Player/player.gd" id="1_1yrw1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2vkgk"]
+size = Vector2(64, 32)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_1yrw1")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2vkgk")
+
+[node name="Icon" type="Polygon2D" parent="."]
+position = Vector2(0, 16)
+polygon = PackedVector2Array(-32, -32, -32, 0, 32, 0, 32, -32)
+
+[node name="Head" type="Node2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="HitScans" type="Node2D" parent="Head"]
+rotation = 1.5708
+
+[node name="Aims" type="Node2D" parent="Head"]
+rotation = 1.5708
+
+[node name="AimTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="Balls" type="Label" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = -32.0
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 16.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="AimTimer" to="." method="_on_aim_timer_timeout"]

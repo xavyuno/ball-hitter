@@ -1,0 +1,7 @@
+res://Game/Main/main.tscn
+res://Game/Assets/Scenes/Player/player.tscn
+res://Game/Assets/Scenes/Block/block.tscn
+res://Game/Assets/Scenes/Ball/ball.tscn
+res://Game/Interface/HUD/hud.tscn
+res://Game/Interface/Upgrades/upgrades.tscn
+res://Game/Interface/Upgrades/upgrade.tscn

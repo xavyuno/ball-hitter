@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmmjdfdpxqf60"]
+
+[ext_resource type="Script" uid="uid://dmfudpnnl6frk" path="res://Game/Assets/Scenes/HitScan/hit_scan.gd" id="1_rvn58"]
+
+[node name="HitScan" type="RayCast2D"]
+z_index = -1
+target_position = Vector2(0, -5000)
+script = ExtResource("1_rvn58")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmgyladxgpbt0"]
+
+[ext_resource type="Script" uid="uid://bujeofuoff2qt" path="res://Game/Assets/Scenes/Despawn/despawn.gd" id="1_6ka36"]
+
+[node name="Despawn" type="Timer"]
+one_shot = true
+script = ExtResource("1_6ka36")
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]
